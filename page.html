@@ -125,8 +125,22 @@
   $('.key-button').on("click", function() {
     keyPressed($(this).html());
 });
+$(document).keydown(function(event) {
+  keyPressed(event.key);
+});
+
+
   function keyPressed(key){
-    console.log(key);
+    alert(key);
+  }
+  function summonText(){
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    
+    let summonedText = document.createElement("div");
+    summonText.classList.toggle("enemy");
+    
+    characters.charAt(randomIndex)
   }
 </script>
 
