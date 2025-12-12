@@ -134,15 +134,14 @@
       <div class="col key-button">
         n
       </div>
-      <div class="col key-button">
-        m
-      </div>
+      <div class="col key-button">m</div>
     </div>
   </div>
 </div>
 <script>
   $('.key-button').on("click", function() {
-    keyPressed($(this).html());
+    console.log($(this).html().trim());
+    keyPressed($(this).html().trim());
 });
 $(document).keydown(function(event) {
   keyPressed(event.key);
