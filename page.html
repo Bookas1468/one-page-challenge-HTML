@@ -20,7 +20,8 @@
       height: 40px;
       display: inline-flex;
       justify-content: center;
-      background-color:red;
+      background-color: rgb(251, 212, 255);
+      filter: drop-shadow(1px 1px 2px rgb(0, 0, 0));
     }
     .keyboard-row keyboard-row {
         display: flex;
@@ -28,99 +29,115 @@
         margin-bottom: 5px;
     }
     .keyboard{
-      margin-top: 75vh;
+      background-color: rgb(189, 221, 248);
+    }
+    .enemy{
+      background-color:white;
+      height:10%;
+      width:10%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:1%;
+    }
+    .mainzone{
+      background-color: grey;
+      height: 85vh;
     }
   </style>
   </head>
 <body>
-  
-  <div class="container text-center keyboard " >
-  <div class="row keyboard-row"style="top:90px;">
-    <div class="col key-button">
-      q
+<div class="full">
+  <div class="container-fluid mainzone row mx-auto">
+    
+  </div> 
+  <div class="container-fluid text-center keyboard row mx-auto " >
+    <div class="row keyboard-row mx-auto"style="top:90px;">
+      <div class="col key-button">
+        q
+      </div>
+      <div class="col key-button">
+        w
+      </div>
+      <div class="col key-button">
+        e
+      </div>
+      <div class="col key-button">
+        r
+      </div>
+      <div class="col key-button">
+        t
+      </div>
+      <div class="col key-button">
+        y
+      </div>
+      <div class="col key-button">
+        u
+      </div>
+      <div class="col key-button">
+        i
+      </div>
+      <div class="col key-button">
+        o
+      </div>
+      <div class="col key-button">
+        p
+      </div>
     </div>
-    <div class="col key-button">
-      w
+    <div class="row keyboard-row mx-auto">
+      <div class="col key-button">
+        a
+      </div>
+      <div class="col key-button">
+        s
+      </div>
+      <div class="col key-button">
+        d
+      </div>
+      <div class="col key-button">
+        f
+      </div>
+      <div class="col key-button">
+        g
+      </div>
+      <div class="col key-button">
+        h
+      </div>
+      <div class="col key-button">
+        j
+      </div>
+      <div class="col key-button">
+        k
+      </div>
+      <div class="col key-button">
+        l
+      </div>
     </div>
-    <div class="col key-button">
-      e
-    </div>
-    <div class="col key-button">
-      r
-    </div>
-    <div class="col key-button">
-      t
-    </div>
-    <div class="col key-button">
-      y
-    </div>
-    <div class="col key-button">
-      u
-    </div>
-    <div class="col key-button">
-      i
-    </div>
-    <div class="col key-button">
-      o
-    </div>
-    <div class="col key-button">
-      p
-    </div>
-  </div>
-  <div class="row keyboard-row">
-    <div class="col key-button">
-      a
-    </div>
-    <div class="col key-button">
-      s
-    </div>
-    <div class="col key-button">
-      d
-    </div>
-    <div class="col key-button">
-      f
-    </div>
-    <div class="col key-button">
-      g
-    </div>
-    <div class="col key-button">
-      h
-    </div>
-    <div class="col key-button">
-      j
-    </div>
-    <div class="col key-button">
-      k
-    </div>
-    <div class="col key-button">
-      l
-    </div>
-  </div>
-  <div class="row keyboard-row">
-    <div class="col key-button">
-      z
-    </div>
-    <div class="col key-button">
-      x
-    </div>
-    <div class="col key-button">
-      c
-    </div>
-    <div class="col key-button">
-      v
-    </div>
-    <div class="col key-button">
-      b
-    </div>
-    <div class="col key-button">
-      n
-    </div>
-    <div class="col key-button">
-      m
+    <div class="row keyboard-row mx-auto">
+      <div class="col key-button">
+        z
+      </div>
+      <div class="col key-button">
+        x
+      </div>
+      <div class="col key-button">
+        c
+      </div>
+      <div class="col key-button">
+        v
+      </div>
+      <div class="col key-button">
+        b
+      </div>
+      <div class="col key-button">
+        n
+      </div>
+      <div class="col key-button">
+        m
+      </div>
     </div>
   </div>
 </div>
-
 <script>
   $('.key-button').on("click", function() {
     keyPressed($(this).html());
@@ -131,17 +148,33 @@ $(document).keydown(function(event) {
 
 
   function keyPressed(key){
-    alert(key);
+    //alert(key);
+    summonText()
   }
   function summonText(){
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const randomIndex = Math.floor(Math.random() * characters.length);
     
     let summonedText = document.createElement("div");
-    summonText.classList.toggle("enemy");
+    summonedText.classList.toggle("enemy");
+    summonedText.classList.add("col-2","text-center", "rounded");
     
-    characters.charAt(randomIndex)
+const container = document.getElementsByClassName("mainzone")[0];
+    if (container) {
+        container.appendChild(summonedText);
+    } else {
+        console.error("Error!");
+    }
+    
+    summonedText.innerHTML=characters.charAt(randomIndex);
+    let $summoned = summonedText;
+    $summoned.animate({backgroundColor:'black'},5000,function()
+    {
+      summonedText.remove();
+    });
+    
   }
+  
 </script>
 
 </body>
