@@ -65,11 +65,13 @@
     </div>
     <div class="col keyboard">
     <label for="fonts">Choose a font:</label>
-    <select id="fonts" name="fonts" onClick>
-    <option value="helvetica">Helvetica</option>
-    <option value="verdana">Verdana</option>
-    <option value="times">Times New Roman</option>
-    <option value="brush">Brush Script MT</option>
+      
+    <select id="fonts" name="fonts" onclick='fontChange()'>
+      <option value="papyrus">Papyrus</option>
+      <option value="helvetica">Helvetica</option>
+      <option value="verdana">Verdana</option>
+      <option value="georgia">Georgia</option>
+
     </select>
         </div>
     
@@ -199,6 +201,7 @@ const container = document.getElementsByClassName("mainzone")[0];
     }
     
     summonedText.innerHTML=characters.charAt(randomIndex);
+    summonedText.style.fontFamily = document.querySelector('select').value;
     summonedText.animate(
       [
         {backgroundColor:"white",color:'black'},
@@ -221,6 +224,11 @@ const container = document.getElementsByClassName("mainzone")[0];
     }, 5000);
     
   }
+  function fontChange(){
+    $("div").css("font-family",document.querySelector('select').value);
+  }
+  
+  
   setInterval(summonText,300);
   
   
