@@ -154,7 +154,7 @@ $(document).keydown(function(event) {
     let firstLetter = $(".mainzone").children("div").first();
     if (key.toUpperCase()==firstLetter.html()){
       console.log("good");
-      firstLetter.parent().empty(firstLetter);
+      firstLetter.parent().children(firstLetter).first().remove();
       firstLetter.remove();
     }
   }
