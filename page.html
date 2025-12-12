@@ -39,7 +39,9 @@
       align-items:center;
       justify-content:center;
       margin:1%;
+      transition: background-color 5s;
     }
+    
     .mainzone{
       background-color: grey;
       height: 85vh;
@@ -168,10 +170,30 @@ const container = document.getElementsByClassName("mainzone")[0];
     
     summonedText.innerHTML=characters.charAt(randomIndex);
     let $summoned = summonedText;
-    $summoned.animate({backgroundColor:'black'},5000,function()
-    {
-      summonedText.remove();
-    });
+    //$summoned.animate({backgroundColor:'black'},5000,function()
+    //{
+    //  console.log("test");
+   //   $(this).remove();
+   // });
+    summonedText.animate(
+      [
+        {backgroundColor:"white",color:'black'},
+        {backgroundColor:"red",color:'white'}
+      ],
+      {
+        duration:5000,
+        easing:'linear',
+        fill:"forwards"
+      }
+    );
+    
+
+
+    setTimeout(function() {
+        if (summonedText.parentNode) {
+            summonedText.parentNode.removeChild(summonedText);
+        }
+    }, 5000);
     
   }
   
