@@ -150,8 +150,13 @@ $(document).keydown(function(event) {
 
 
   function keyPressed(key){
-    //alert(key);
     summonText()
+    let firstLetter = $(".mainzone").children("div").first();
+    if (key.toUpperCase()==firstLetter.html()){
+      console.log("good");
+      firstLetter.parent().empty(firstLetter);
+      firstLetter.remove();
+    }
   }
   function summonText(){
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -169,12 +174,6 @@ const container = document.getElementsByClassName("mainzone")[0];
     }
     
     summonedText.innerHTML=characters.charAt(randomIndex);
-    let $summoned = summonedText;
-    //$summoned.animate({backgroundColor:'black'},5000,function()
-    //{
-    //  console.log("test");
-   //   $(this).remove();
-   // });
     summonedText.animate(
       [
         {backgroundColor:"white",color:'black'},
@@ -192,6 +191,7 @@ const container = document.getElementsByClassName("mainzone")[0];
     setTimeout(function() {
         if (summonedText.parentNode) {
             summonedText.parentNode.removeChild(summonedText);
+          summonedText.remove();
         }
     }, 5000);
     
