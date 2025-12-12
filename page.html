@@ -9,11 +9,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
   <style>
+    /*<!-- ****  CSS Feature submission **** -->*/
     div{
       font-family:"papyrus";
       font-size:x-large;
       font-weight: bold;
     }
+    /*<!-- ****  CSS Feature submission **** -->*/
     .key-button{
       margin: 2px;
       width: 40px;
@@ -41,7 +43,7 @@
       margin:1%;
       filter: drop-shadow(3px 3px 2px rgb(0, 0, 0));
     }
-    
+    /*<!-- ****  CSS Feature submission **** -->*/
     .mainzone{
       background-color: grey;
       height: 85vh;
@@ -49,14 +51,14 @@
     label{
       font-size:15px;
     }
-    
+    /*<!-- ****  CSS Feature submission **** -->*/
     select{
       width:20%;
     }
   </style>
   </head>
 <body>
-  
+  <!-- ****  HTML Feature submission **** -->
   <header class="container-fluid row mx-auto">
     <div class="col keyboard">
     Score:
@@ -66,7 +68,7 @@
     </div>
     <div class="col keyboard">
     <label for="fonts">Choose a font:</label>
-      
+      <!-- ****  HTML Feature submission **** -->
     <select id="fonts" name="fonts" onclick='fontChange()'>
       <option value="papyrus">Papyrus</option>
       <option value="helvetica">Helvetica</option>
@@ -75,6 +77,7 @@
 
     </select>
         </div>
+    <!-- ****  HTML Feature submission end **** -->
     <div class="col keyboard">
     <label for="diff">Choose a difficulty:</label>
       
@@ -92,6 +95,7 @@
   <div class="container-fluid mainzone row mx-auto">
     
   </div> 
+  
   <div class="container-fluid text-center keyboard row mx-auto " >
     <div class="row keyboard-row mx-auto"style="top:90px;">
       <div class="col key-button">
@@ -215,7 +219,7 @@ const container = document.getElementsByClassName("mainzone")[0];
     } else {
         console.error("Error!");
     }
-    
+    <!-- ****  JavaScript Feature submission **** -->
     summonedText.innerHTML=characters.charAt(randomIndex);
     summonedText.style.fontFamily = document.querySelector('select').value;
     summonedText.animate(
@@ -231,7 +235,7 @@ const container = document.getElementsByClassName("mainzone")[0];
     );
     
 
-
+<!-- ****  JavaScript Feature submission **** -->
     setTimeout(function() {
         if (summonedText.parentNode) {
             summonedText.parentNode.removeChild(summonedText);
@@ -245,6 +249,7 @@ const container = document.getElementsByClassName("mainzone")[0];
   function fontChange(){
     $("div").css("font-family",document.querySelector('#fonts').value);
   }
+  <!-- ****  JavaScript Feature submission **** -->
   let start = setInterval(summonText,spawnTime);
   function diffChange(){
     clearInterval(start);
