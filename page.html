@@ -47,11 +47,9 @@
       height: 85vh;
     }
     label{
-      font-size:10px;
+      font-size:15px;
     }
-    input{
-      font-size:10px;
-    }
+    
     select{
       width:20%;
     }
@@ -60,8 +58,11 @@
 <body>
   
   <header class="container-fluid row mx-auto">
-    <div class="lives col keyboard">
-    avast
+    <div class="col keyboard">
+    Score:
+      <span class="score">
+        0
+      </span>
     </div>
     <div class="col keyboard">
     <label for="fonts">Choose a font:</label>
@@ -71,6 +72,16 @@
       <option value="helvetica">Helvetica</option>
       <option value="verdana">Verdana</option>
       <option value="georgia">Georgia</option>
+
+    </select>
+        </div>
+    <div class="col keyboard">
+    <label for="diff">Choose a difficulty:</label>
+      
+    <select id="diff" name="diff" onclick='diffChange()'>
+      <option value="Easy">Easy</option>
+      <option value="Normal">Normal</option>
+      <option value="Hard">Hard</option>
 
     </select>
         </div>
@@ -169,6 +180,10 @@
   </div>
 </div>
 <script>
+  let spawnTime = 1000;
+  let deathTime = 5000;
+  let score = 0;
+  $(".score").html(score);
   $('.key-button').on("click", function() {
     keyPressed($(this).html().trim());
 });
@@ -182,7 +197,8 @@ $(document).keydown(function(event) {
     if (key.toUpperCase()==firstLetter.html()){
       firstLetter.parent().children(firstLetter).first().remove();
       firstLetter.remove();
-      
+      score+=1;
+      $(".score").html(score);
     }
   }
   function summonText(){
@@ -208,7 +224,7 @@ const container = document.getElementsByClassName("mainzone")[0];
         {backgroundColor:"red",color:'white'}
       ],
       {
-        duration:5000,
+        duration:deathTime,
         easing:'linear',
         fill:"forwards"
       }
@@ -220,16 +236,37 @@ const container = document.getElementsByClassName("mainzone")[0];
         if (summonedText.parentNode) {
             summonedText.parentNode.removeChild(summonedText);
           summonedText.remove();
+          score-=1;
+          $(".score").html(score);
         }
-    }, 5000);
+    }, deathTime);
     
   }
   function fontChange(){
-    $("div").css("font-family",document.querySelector('select').value);
+    $("div").css("font-family",document.querySelector('#fonts').value);
+  }
+  let start = setInterval(summonText,spawnTime);
+  function diffChange(){
+    clearInterval(start);
+    let diff = document.querySelector('#diff').value;
+    if (diff == "Easy"){
+      spawnTime = 1000;
+      deathTime = 5000;
+    }
+    if (diff == "Normal"){
+      spawnTime = 500;
+      deathTime = 4000;
+    }
+    if (diff == "Hard"){
+      spawnTime = 300;
+      deathTime = 3000;
+    }
+    start = setInterval(summonText,spawnTime);
   }
   
   
-  setInterval(summonText,300);
+  
+  
   
   
 </script>
