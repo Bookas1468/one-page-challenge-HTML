@@ -39,16 +39,42 @@
       align-items:center;
       justify-content:center;
       margin:1%;
-      transition: background-color 5s;
+      filter: drop-shadow(3px 3px 2px rgb(0, 0, 0));
     }
     
     .mainzone{
       background-color: grey;
       height: 85vh;
     }
+    label{
+      font-size:10px;
+    }
+    input{
+      font-size:10px;
+    }
+    select{
+      width:20%;
+    }
   </style>
   </head>
 <body>
+  
+  <header class="container-fluid row mx-auto">
+    <div class="lives col keyboard">
+    avast
+    </div>
+    <div class="col keyboard">
+    <label for="fonts">Choose a font:</label>
+    <select id="fonts" name="fonts" onClick>
+    <option value="helvetica">Helvetica</option>
+    <option value="verdana">Verdana</option>
+    <option value="times">Times New Roman</option>
+    <option value="brush">Brush Script MT</option>
+    </select>
+        </div>
+    
+    
+  </header>
 <div class="full">
   <div class="container-fluid mainzone row mx-auto">
     
@@ -134,13 +160,14 @@
       <div class="col key-button">
         n
       </div>
-      <div class="col key-button">m</div>
+      <div class="col key-button">
+        m
+      </div>
     </div>
   </div>
 </div>
 <script>
   $('.key-button').on("click", function() {
-    console.log($(this).html().trim());
     keyPressed($(this).html().trim());
 });
 $(document).keydown(function(event) {
@@ -149,12 +176,11 @@ $(document).keydown(function(event) {
 
 
   function keyPressed(key){
-    summonText()
     let firstLetter = $(".mainzone").children("div").first();
     if (key.toUpperCase()==firstLetter.html()){
-      console.log("good");
       firstLetter.parent().children(firstLetter).first().remove();
       firstLetter.remove();
+      
     }
   }
   function summonText(){
@@ -195,6 +221,8 @@ const container = document.getElementsByClassName("mainzone")[0];
     }, 5000);
     
   }
+  setInterval(summonText,300);
+  
   
 </script>
 
